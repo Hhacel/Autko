@@ -1,0 +1,22 @@
+library IEEE;
+use IEEE.STD_LOGIC_1164.all;
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
+
+PACKAGE sqr IS
+PROCEDURE SQ(SIGNAL Xcur,Ycur,Xpos,Ypos:IN INTEGER;SIGNAL R: OUT STD_LOGIC, SIGNAL G: OUT STD_LOGIC, SIGNAL B: OUT STD_LOGIC ;SIGNAL DRAW: OUT STD_LOGIC);
+END sqr;
+
+PACKAGE BODY sqr IS
+PROCEDURE SQ(SIGNAL Xcur,Ycur,Xpos,Ypos:IN INTEGER;SIGNAL R: OUT STD_LOGIC, SIGNAL G: OUT STD_LOGIC, SIGNAL B: OUT STD_LOGIC ;SIGNAL DRAW: OUT STD_LOGIC) IS
+BEGIN
+ IF(Xcur>Xpos AND Xcur<(Xpos+100) AND Ycur>Ypos AND Ycur<(Ypos+100))THEN
+     RGB<='1';
+     DRAW<='1';
+     ELSE
+     DRAW<='0';
+ END IF;
+ 
+END SQ;
+END sqr;
