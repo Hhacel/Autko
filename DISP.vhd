@@ -35,23 +35,36 @@ END SYNC;
 
 ARCHITECTURE MAIN OF SYNC IS
 
-
+SIGNAL R, G, B: STD_LOGIC;
+SIGNAL DRAW: STD_LOGIC;
+SIGNAL SQ_X, SQ_Y: INTEGER RANGE 0 TO 1040:=0;
 SIGNAL HPOS: INTEGER RANGE 0 TO 1040:=0;
 SIGNAL VPOS: INTEGER RANGE 0 TO 666:=0;
 BEGIN
-
+SQ_X<=640;
+SQ_Y<=366;
+SQ(HPOS, VPOS, SQ_X, SQ_Y, R, G, B, DRAW);
  PROCESS(Clk)
  BEGIN
 	IF(Clk'Event AND Clk='1')THEN
-		IF(HPOS=640 OR VPOS=366) THEN
-			R<='1';
-			G<='1';
-			B<='1';
-		ELSE
+		IF(DRAW='1')THEN
+			R <= R;
+			G <= G;
+	 		B <= B;
+	 	ELSE
 			R<='0';
 			G<='0';
-			B<='0'; 
+	 		B<='0';
 		END IF;
+		-- IF(HPOS=640 OR VPOS=366) THEN
+		-- 	R<='1';
+		-- 	G<='1';
+		-- 	B<='1';
+		-- ELSE
+		-- 	R<='0';
+		-- 	G<='0';
+		-- 	B<='0'; 
+		-- END IF;
 		IF(HPOS<1040)THEN
 			HPOS<=HPOS+1;
 		ELSE
